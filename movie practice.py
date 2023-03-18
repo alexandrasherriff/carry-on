@@ -68,9 +68,9 @@ def movie_search():
     items = [
         'title', 'homepage', 'overview', 'release_date', 'runtime', 'budget'
     ]  # creates list for text file
-
-   genre_names = []
-   for genre in results["genres"]:
+    
+    genre_names = []
+    for genre in results["genres"]:
         genre_names.append(genre['name'])
     genres = ", ".join(genre_names)
 
