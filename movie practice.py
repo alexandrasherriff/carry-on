@@ -70,7 +70,7 @@ def movie_search():
     ]  # creates list for text file
 
    genre_names = []
-    for genre in results["genres"]:
+   for genre in results["genres"]:
         genre_names.append(genre['name'])
     genres = ", ".join(genre_names)
 
@@ -83,8 +83,8 @@ def movie_search():
     with open('{}.txt'.format(results['title']), 'a+') as text_file:
         for item in items:
             text_file.write(item.capitalize() + ': ' + str(results[item]) + '\n')
-            text_file.write('Genres: ' + genres + '\n')
-            text_file.write('Production Companies: ' + production_companies + '\n')
+        text_file.write('Genres: ' + genres + '\n')
+        text_file.write('Production Companies: ' + production_companies + '\n')
 
     # Prints results into console
     print("Movie title: {}".format(results['title']))
