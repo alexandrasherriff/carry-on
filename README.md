@@ -1,3 +1,7 @@
+#carry-on-pythons
+A place to continue building on this project that was submitted as part of the CFG Kickstarter in Python & Apps
+
+
 # pythons-on-a-plane
 
 This is the code for our team project created as a part of the Code First Girls Python course.
