@@ -66,32 +66,34 @@ def movie_search():
     results = call_themoviedb_api(movie_id, QueryType.Movie)
 
     items = [
-        'title', 'homepage', 'genres', 'overview', 'release_date', 'runtime',
-        'production_companies', 'budget'
+        'title', 'homepage', 'overview', 'release_date', 'runtime', 'budget'
     ]  # creates list for text file
 
-    genre = results["genres"]  # targets dictionary within list
-    production_company = results['production_companies']  # targets dictionary within list
+   genre_names = []
+    for genre in results["genres"]:
+        genre_names.append(genre['name'])
+    genres = ", ".join(genre_names)
+
+    production_company_names = []
+    for company in results['production_companies']:
+        production_company_names.append(company['name'])
+    production_companies = ", ".join(production_company_names)
 
     # writes and appends text file so programme can be run multiple times
     with open('{}.txt'.format(results['title']), 'a+') as text_file:
         for item in items:
             text_file.write(item.capitalize() + ': ' + str(results[item]) + '\n')
+            text_file.write('Genres: ' + genres + '\n')
+            text_file.write('Production Companies: ' + production_companies + '\n')
 
     # Prints results into console
     print("Movie title: {}".format(results['title']))
     print("Homepage: {}".format(results['homepage']))
-    for i in genre:
-        # targets the genres 'name' key in the dictionary embedded in the list
-        print("Movie genre: {}".format(i['name']))
-        break
+    print("Genres: {}".format(genres))
     print("Movie overview: {}".format(results['overview']))
     print("Release_date: {}".format(results['release_date']))
     print("Run time: {} minutes".format(results['runtime']))
-    for i in production_company:
-        # targets the production company 'name' key in the dictionary embedded in the list
-        print("Production company: {}".format(i['name']))
-        break
+    print("Production companies: {}".format(production_companies))
     print("Movie budget: ${}".format(results['budget']))
 
 
